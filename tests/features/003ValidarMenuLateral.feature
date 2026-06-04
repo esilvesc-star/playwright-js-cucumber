@@ -7,7 +7,7 @@ Feature: 003 Validar Menu Lateral
   Background:
     Given que eu acesse o sistema
 
-  @regressivo
+  @Teste
   Scenario: Validar exibição do menu lateral
 
     When o usuário faz login com "standard_user" e "secret_sauce"

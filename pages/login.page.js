@@ -6,7 +6,7 @@ class LoginPage {
     // MAPEAMENTO DOS ELEMENTOS
     // ==========================
 
-    this.campoUsuario = page.locator('#user-nami');
+    this.campoUsuario = page.locator('#user-name');
     this.campoSenha = page.locator('#password');
     this.botaoLogin = page.locator('#login-button');
     this.tituloProdutos = page.locator('.title');
