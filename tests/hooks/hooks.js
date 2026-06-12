@@ -1,4 +1,4 @@
-import { Before, After } from '@cucumber/cucumber';
+import { Before, After, Status } from '@cucumber/cucumber';
 import { chromium } from '@playwright/test';
 import dotenv from 'dotenv';
 
@@ -10,11 +10,22 @@ Before(async function () {
     headless: false
   });
 
-  // Cria uma nova página/aba do navegador
+  // Cria uma nova página/aba
   this.page = await this.browser.newPage();
 });
 
-After(async function () {
+After(async function (scenario) {
+  // Tira screenshot ao final de cada cenário
+  const screenshot = await this.page.screenshot({
+    fullPage: true
+  });
+
+  // Anexa a evidência no relatório Allure/Cucumber
+  await this.attach(
+    screenshot,
+    'image/png'
+  );
+
   // Fecha o navegador depois de cada cenário
   await this.browser.close();
 });

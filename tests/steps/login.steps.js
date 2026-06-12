@@ -73,12 +73,13 @@ Then(
 // =====================================================
 When(
   'eu abro o menu lateral',
-  async function () {
+   async function () {
 
-    console.log('Abrindo menu lateral');
+    console.log('INICIO STEP MENU');
 
-    // Futuramente ficará algo parecido com:
-    // await this.autenticacaoFlow.menuPage.abrirMenu();
+    await this.autenticacaoFlow.menuPage.abrirMenu();
+
+    console.log('FIM STEP MENU');
   }
 );
 
@@ -88,15 +89,20 @@ When(
 // Recebe a tabela da Feature
 // e transforma em um array JavaScript
 // =====================================================
+
 Then(
   'devo visualizar as seguintes opções:',
   async function (dataTable) {
 
-    // Converte a tabela do Gherkin em um array
-    const opcoes = dataTable.raw().flat();
+    console.log('INICIO VALIDACAO OPCOES');
 
-    // Exibe o conteúdo no terminal
+    const opcoes = dataTable.raw().flat().slice(1);
+
     console.log(opcoes);
-  
+
+    await this.autenticacaoFlow.menuPage
+      .validarOpcoesVisiveis(opcoes);
+
+    console.log('FIM VALIDACAO OPCOES');
   }
 );
